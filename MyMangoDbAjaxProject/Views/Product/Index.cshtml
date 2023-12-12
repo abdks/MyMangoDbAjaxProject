@@ -1,0 +1,33 @@
+﻿@model List<Product>
+@{
+    int count = 0;
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+<table class="table table-borderless">
+    <tr>
+        <th>Sıra</th>
+        <th>#</th>
+        <th>Ürün Adı</th>
+        <th>Ürün Fiyatı</th>
+        <th>Ürün Stok</th>
+        <th>Ürün Kategorisi</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.ProductID</td>
+            <td>@item.ProductName</td>
+            <td>@item.ProductPrice</td>
+            <td>@item.ProductStock</td>
+            <td>@item.CategoryID</td>
+            <td><a href="/Product/DeleteProduct/@item.ProductID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Product/UpdateProduct/@item.ProductID" class="btn btn-danger">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Product/CreateProduct" class="btn btn-success">Yeni Ürün Girişi</a>
