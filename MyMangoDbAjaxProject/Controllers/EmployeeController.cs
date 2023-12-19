@@ -36,8 +36,24 @@ namespace MyMangoDbAjaxProject.Controllers
             var values = JsonConvert.SerializeObject(employee);
             return Json(values);
         }
+        public async Task<IActionResult> GetEmployee(string EmployeeId)
+        {
+            var values = await _employeeCollection.Find(x => x.EmployeID == EmployeeId).FirstOrDefaultAsync();
+            var jsonvalues = JsonConvert.SerializeObject(values);
+            return Json(jsonvalues);
+
+        }
+        public async Task<IActionResult> DeleteEmployee(string id)
+        {
+            await _employeeCollection.DeleteOneAsync(x => x.EmployeID == id);
+            return NoContent();
+        }
+        public async Task<IActionResult> UpdateEmployee(Employee employee)
+        {
+            var values = await _employeeCollection.FindOneAndReplaceAsync(x => x.EmployeID == employee.EmployeID, employee);
+            return NoContent();
+        }
     }
 }
 
 
-;
