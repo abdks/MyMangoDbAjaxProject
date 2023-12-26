@@ -1,0 +1,39 @@
+﻿@model List<MyMangoDbAjaxProject.Dal.Entities.References>
+@{
+    int count = 0;
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+<br />
+<br />
+<br />
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Sıra</th>
+            <th>#</th>
+            <th>Ad Soyad</th>
+            <th>Açıklama</th>
+            <th>Unvan</th>
+            <th>Resim</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.ReferencesID</td>
+                <td>@item.NameSurname</td>
+                <td>@item.Unvan</td>
+                <td>@item.Description</td>
+                <td>@item.Image</td>
+                
+                <td><a href="/References/DeleteReferences/@item.ReferencesID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/References/UpdateReferences/@item.ReferencesID" class="btn btn-danger">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/References/CreateReferences" class="btn btn-primary">Yeni Referans Girişi</a>
+</div>

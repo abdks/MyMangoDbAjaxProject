@@ -1,0 +1,26 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.Stats
+
+@{
+    ViewData["Title"] = "UpdateStats";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+
+<br />
+<br />
+
+<div class="container">
+    <form method="post">
+        <label>#</label>
+        <input type="text" asp-for="StatsID" class="form-control" />
+        <br />
+        <label>Yetenek Başlığı</label>
+        <input type="text" asp-for="title" class="form-control" />
+        <br />
+        <label>Yetenek Derecesi</label>
+        <input type="text" asp-for="Amount" class="form-control" />
+        <br />
+
+
+        <button class="btn btn-primary">Ekle</button>
+    </form>
+</div>

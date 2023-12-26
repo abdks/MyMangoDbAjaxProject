@@ -1,0 +1,17 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.Projects
+
+@{
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+<br />
+<br />
+
+<div class="container">
+    <form method="post">
+        <label>Resim Linki</label>
+        <input type="text" asp-for="ImageUrl" class="form-control" />
+        <br />
+        <button class="btn btn-primary">Ekle</button>
+    </form>
+</div>

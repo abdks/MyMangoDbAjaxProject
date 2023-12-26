@@ -1,0 +1,33 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.Contact
+
+@{
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+<br />
+<br />
+
+<div class="container">
+    <form method="post">
+        <label>#</label>
+        <input type="text" asp-for="ContactID" class="form-control" />
+        <br />
+        <label>Adres</label>
+        <input type="text" asp-for="Office" class="form-control" />
+        <br />
+        <label>Mail</label>
+        <input type="text" asp-for="Mail" class="form-control" />
+        <br />
+        <label>Telefon No</label>
+        <input type="text" asp-for="No" class="form-control" />
+        <br />
+        <label>Instagram</label>
+        <input type="text" asp-for="Instagram" class="form-control" />
+        <br />
+        <label>Linkedin</label>
+        <input type="text" asp-for="Linkedin" class="form-control" />
+        <br />
+
+        <button class="btn btn-primary">Güncelle</button>
+    </form>
+</div>

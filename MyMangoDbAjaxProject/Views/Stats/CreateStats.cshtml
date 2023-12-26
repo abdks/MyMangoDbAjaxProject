@@ -1,0 +1,21 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.Stats
+@{
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+<br />
+<br />
+
+<div class="container">
+    <form method="post">
+        <label>Yetenek Başlığı</label>
+        <input type="text" asp-for="title" class="form-control" />
+        <br />
+        <label>Yetenek Derecesi</label>
+        <input type="text" asp-for="Amount" class="form-control" />
+        <br />
+     
+
+        <button class="btn btn-primary">Ekle</button>
+    </form>
+</div>

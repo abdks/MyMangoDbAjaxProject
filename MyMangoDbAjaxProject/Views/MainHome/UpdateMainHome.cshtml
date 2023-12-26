@@ -1,0 +1,24 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.MainHome
+
+@{
+    ViewData["Title"] = "UpdateMainHome";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+
+<br />
+<br />
+<form method="post">
+    <label>ID</label>
+    <input type="text" asp-for="MainHomeID" class="form-control" />
+    <br />
+    <label>Ad Soyad</label>
+    <input type="text" asp-for="NameSurname" class="form-control" />
+    <br />
+    <label>Unvan</label>
+    <input type="text" asp-for="Unvan" class="form-control" />
+    <br />
+    <label>Resim</label>
+    <input type="text" asp-for="ImageUrl" class="form-control" />
+    <br />
+    <button class="btn btn-success">Öğeyi Güncelle</button>
+</form>

@@ -1,0 +1,25 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.Services
+@{
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+<br />
+<br />
+
+<div class="container">
+    <form method="post">
+        <label>Hizmet Başlığı</label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <br />
+        <label>Hizmet Açıklaması</label>
+        <input type="text" asp-for="Description" class="form-control" />
+        <br />
+        <label>Hizmet Resimi</label>
+        <input type="text" asp-for="ImageUrl" class="form-control" />
+        <br />
+
+
+
+        <button class="btn btn-primary">Ekle</button>
+    </form>
+</div>

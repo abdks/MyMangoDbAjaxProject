@@ -1,0 +1,40 @@
+﻿@model List<MyMangoDbAjaxProject.Dal.Entities.Contact>
+@{
+    int count = 0;
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+<br />
+<br />
+<br />
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Sıra</th>
+            <th>#</th>
+            <th>Adres</th>
+            <th>Mail</th>
+            <th>No</th>
+            <th>Instagram</th>
+            <th>Linkedin</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.ContactID</td>
+                <td>@item.Office</td>
+                <td>@item.Mail</td>
+                <td>@item.No</td>
+                <td>@item.Instagram</td>
+                <td>@item.Linkedin</td>
+                <td><a href="/Contact/DeleteContact/@item.ContactID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Contact/UpdateContact/@item.ContactID" class="btn btn-danger">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Contact/CreateContact" class="btn btn-primary">Yeni İletişim Girişi</a>
+</div>

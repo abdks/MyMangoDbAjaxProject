@@ -1,0 +1,41 @@
+﻿@model List<MyMangoDbAjaxProject.Dal.Entities.Education>
+
+@{
+    int count = 0;
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Sıra</th>
+            <th>#</th>
+           <th>Başlık</th>
+           <th>Tarih</th>
+           <th>Yer</th>
+
+
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+               <td>@item.EducationID</td>
+               <td>@item.Title</td>
+               <td>@item.Date</td>
+               <td>@item.Place</td>
+                <td><a href="/Education/DeleteEducation/@item.EducationID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Education/UpdateEducation/@item.EducationID" class="btn btn-danger">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/Education/CreateEducation" class="btn btn-primary">Yeni Eğitim Girişi</a>
+</div>

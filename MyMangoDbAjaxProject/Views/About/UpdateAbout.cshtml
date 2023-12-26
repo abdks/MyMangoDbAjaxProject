@@ -1,0 +1,44 @@
+﻿@model MyMangoDbAjaxProject.Dal.Entities.About
+
+@{
+    Layout = "~/Views/Shared/_MongoLayout.Cshtml";
+}
+
+
+<br />
+<br />
+
+<div class="container">
+    <form method="post">
+        <label>ID</label>
+        <input type="text" asp-for="AboutID" class="form-control" />
+        <br />
+        <label>1.Başlık</label>
+        <input type="text" asp-for="Title1" class="form-control" />
+        <br />
+        <label>1.Açıklama</label>
+        <input type="text" asp-for="Description1" class="form-control" />
+        <br />
+        <label>2.Başlık</label>
+        <input type="text" asp-for="Title2" class="form-control" />
+        <br />
+        <label>2.Açıklama</label>
+        <input type="text" asp-for="Description2" class="form-control" />
+        <br />
+        <label>3.Başlık</label>
+        <input type="text" asp-for="Title3" class="form-control" />
+        <br />
+        <label>3.Açıklama</label>
+        <input type="text" asp-for="Description3" class="form-control" />
+        <br />
+        <label>1.Resim</label>
+        <input type="text" asp-for="Image1" class="form-control" />
+        <br />
+        <label>2.Resim</label>
+        <input type="text" asp-for="Image2" class="form-control" />
+        <br />
+
+
+        <button class="btn btn-primary">Güncelle</button>
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿@model List<MyMangoDbAjaxProject.Dal.Entities.About>
+
+@{
+    int count = 0;
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<div class="container">
+    <table class="table table-hover">
+        <tr>
+            <th>Sıra</th>
+            <th>#</th>
+            <th>1.Başlık</th>
+            <th>1.Açıklama</th>
+            <th>2.Başlık</th>
+            <th>2.Açıklama</th>
+            <th>3.Başlık</th>
+            <th>3.Açıklama</th>
+            <th>1.Resim</th>
+            <th>2.Resim</th>
+
+
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.AboutID</td>
+                <td>@item.Title1</td>
+                <td>@item.Description1</td>
+                <td>@item.Title2</td>
+                <td>@item.Description2</td>
+                <td>@item.Title3</td>
+                <td>@item.Description3</td>
+                <td>@item.Image1</td>
+                <td>@item.Image2</td>
+                <td><a href="/About/DeleteAbout/@item.AboutID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/About/UpdateAbout/@item.AboutID" class="btn btn-danger">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <a href="/About/CreateAbout" class="btn btn-primary">Yeni Kategori Girişi</a>
+</div>
