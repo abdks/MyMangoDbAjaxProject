@@ -1,0 +1,205 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MongoLayout.cshtml";
+}
+
+<style>
+    ::placeholder {
+        color: #FF0000;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="container">
+    <br />
+    <h3>İşlem Butonları</h3>
+    <button type="button" id="btnemployeelist" class="btn btn-outline-primary">Footer Listesi</button>
+    <button type="button" id="btnemployeecreate" class="btn btn-outline-info" data-toggle="modal" data-target="#createModal">Footer Ekle</button>
+</div>
+
+<br />
+<hr />
+
+<h3>Footer Listesi</h3>
+
+<div id="employeelist"></div>
+<hr />
+
+<!-- Yeni Footer Ekleme Modal -->
+<div class="modal" id="createModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Başlık -->
+            <div class="modal-header">
+                <h4 class="modal-title">Yeni Footer Ekle</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Gövdesi -->
+            <div class="modal-body">
+                <input type="text" class="form-control" placeholder="Footer Adı" id="txtnameCreate" style="border:1px solid black" />
+                <br />
+                <input type="text" class="form-control" placeholder="Footer Soyadı" id="txtsurnameCreate" style="border:1px solid black" />
+                <br />
+            </div>
+
+            <!-- Modal Ayak -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnCreateFooter">Ekle</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Güncelleme Modalı -->
+<div class="modal" id="updateModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Başlık -->
+            <div class="modal-header">
+                <h4 class="modal-title">Footer Güncelle</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal Gövdesi -->
+            <div class="modal-body">
+                <input type="text" class="form-control" placeholder="Footer ID" id="txtidedit" style="border: 1px solid black;" readonly />
+                <br />
+                <input type="text" class="form-control" placeholder="Footer Adı" id="txtnameedit" style="border:1px solid black" />
+                <br />
+                <input type="text" class="form-control" placeholder="Footer Soyadı" id="txtsurnameedit" style="border:1px solid black" />
+                <br />
+            </div>
+
+            <!-- Modal Ayak -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnUpdateFooter">Güncelle</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<script>
+    // Sayfa yüklendiğinde Footer listesini hemen göster
+    $(document).ready(function () {
+        $("#btnemployeelist").click();
+    });
+
+    $("#btnemployeecreate").click(function () {
+        // Modalı açma işlemi Bootstrap tarafından sağlanıyor
+        $("#createModal").modal();
+    });
+
+    // Yeni Footer Ekle butonuna tıklanınca
+    $("#btnCreateFooter").click(function () {
+        let createValues = {
+            Name: $("#txtnameCreate").val(),
+            Designer: $("#txtsurnameCreate").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Footer/CreateFooter/",
+            data: createValues,
+            success: function (funk2) {
+                let result = jQuery.parseJSON(funk2);
+                alert("Footer EKLENDİ");
+
+                // Footer listesini güncelle
+                $("#btnemployeelist").click();
+
+                // Modalı kapatma işlemi Bootstrap tarafından sağlanıyor
+                $("#createModal").modal("hide");
+            }
+        });
+    });
+
+    $("#btnemployeelist").click(function () {
+        $.ajax({
+            contentType: "application/json",
+            dataType: "json",
+            type: "GET",
+            url: "/Footer/FooterList/",
+            success: function (funk1) {
+                let values = JSON.parse(funk1);
+                console.log(values);
+                let tablehtml = `<table class="table table-bordered">
+                                                <tr>
+                                                <th>Footer ID</th>
+                                                <th>Footer Adı</th>
+                                                <th>Footer tasarımcısı</th>
+                                                <th>Güncelle</th>
+                                                <th>Sil</th>
+                                                </tr>`;
+                $.each(values, (index, value) => {
+                    tablehtml += `<tr>
+                                                         <td>${value.FooterID}</td>
+                                                             <td>${value.Name}</td>
+                                                             <td>${value.Designer}</td>
+                                                             <td><button type="button" class="btn btn-warning btn-sm" onclick="openUpdateModal('${value.FooterID}', '${value.Name}', '${value.Designer}')">Güncelle</button></td>
+                                                             <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteFooter('${value.FooterID}')">Sil</button></td>
+                                                 </tr>`;
+                });
+                tablehtml += `</table>`;
+                $("#employeelist").html(tablehtml);
+            }
+        });
+    });
+
+    // Silme işlemi
+    function deleteFooter(id) {
+        $.ajax({
+            url: "/Footer/DeleteFooter/" + id,
+            type: "Get",
+            contentType: "application/json",
+            success: function (funk4) {
+                swal("Footer Başarıyla Silindi");
+                // Footer listesini güncelle
+                $("#btnemployeelist").click();
+            }
+        });
+    }
+
+    // Güncelleme butonunu doğru id ile seçmek için
+    function openUpdateModal(id, name, designer) {
+        $("#txtidedit").val(id);
+        $("#txtnameedit").val(name);
+        $("#txtsurnameedit").val(designer);
+        // Modalı açma işlemi Bootstrap tarafından sağlanıyor
+        $("#updateModal").modal();
+    }
+
+    // Güncelleme işlemi
+    $("#btnUpdateFooter").click(function () {
+        let values = {
+            FooterID: $("#txtidedit").val(),
+            Name: $("#txtnameedit").val(),
+            Designer: $("#txtsurnameedit").val(),
+        };
+
+        $.ajax({
+            url: "/Footer/UpdateFooter/",
+            type: "post",
+            data: values,
+            success: function (funk5) {
+                swal("başarıyla güncellendi");
+                // Footer listesini güncelle
+                $("#btnemployeelist").click();
+                // Modalı kapatma işlemi Bootstrap tarafından sağlanıyor
+                $("#updateModal").modal("hide");
+            }
+        });
+    });
+
+</script>

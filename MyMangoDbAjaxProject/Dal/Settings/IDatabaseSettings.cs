@@ -18,6 +18,8 @@ namespace MyMangoDbAjaxProject.Dal.Settings
 		public string ProjectsCollectionName { get; set; }
 		public string ReferencesCollectionName { get; set; }
 		public string ContactCollectionName { get; set; }
+        public string FooterCollectionName { get; set; }
 
-	}
+
+    }
 }

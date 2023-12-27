@@ -6,6 +6,7 @@
         public string DatabaseName { get; set; }
         public string CategoryCollectionName { get; set; }
         public string EmployeeCollectionName {  get; set; }
+        public string FooterCollectionName {  get; set; }
         public string ProductCollectionName { get; set; }
         public string MainHomeCollectionName { get; set; }
 		public string AboutCollectionName { get; set; }
