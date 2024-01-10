@@ -41,3 +41,5 @@ Projede tek katmanlı mimari kullanılmıştır.
 ![8](https://github.com/abdks/MyMangoDbAjaxProject/assets/62968246/e0e6cd5e-1060-463a-978f-7383fe3bcb7a)
 ![7](https://github.com/abdks/MyMangoDbAjaxProject/assets/62968246/3c838083-d831-4bf7-97fa-d8bb30e4b638)
 ![9](https://github.com/abdks/MyMangoDbAjaxProject/assets/62968246/b04ff53c-064f-4659-8768-ee6575e5f6ba)
+![12](https://github.com/abdks/MyMangoDbAjaxProject/assets/62968246/1ea8d0fb-9450-4ccc-85a3-ef861ea99717)
+![11](https://github.com/abdks/MyMangoDbAjaxProject/assets/62968246/41b62555-9998-485e-b4aa-7cf2d6271432)
